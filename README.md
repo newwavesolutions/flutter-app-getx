@@ -273,3 +273,7 @@ return Obx(() {
     );
 });
 ```
+
+## Refer
+https://github.com/CNAD666/getx_template/blob/main/docs/Use%20of%20Flutter%20GetX---simple%20charm!.md
+https://pub.dev/documentation/get/latest/
