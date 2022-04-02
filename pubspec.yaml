@@ -27,16 +27,16 @@ dependencies:
     sdk: flutter
 
   #State management
-  get: ^4.1.4
+  get: ^4.6.1
 
   #Utilities
-  package_info: ^2.0.0
-  permission_handler: ^6.1.3
+  package_info_plus: ^1.4.0
+#  permission_handler: ^9.2.0
   intl_utils: ^2.1.0
 
   #Store
-  flutter_secure_storage: ^4.1.0
-  shared_preferences: ^2.0.5
+  flutter_secure_storage: ^5.0.2
+  shared_preferences: ^2.0.13
 
   #Network
   retrofit: ^2.0.0-beta1
