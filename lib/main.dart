@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
-import 'package:flutter_app/services/api/api_service.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'bindings/initial_binding.dart';
 import 'common/app_themes.dart';
 import 'router/route_config.dart';
-import 'services/index.dart';
+import 'services/setting_service.dart';
 import 'ui/pages/splash/splash_view.dart';
 
 void main() async {
@@ -25,11 +24,6 @@ void main() async {
 Future initServices() async {
   /// Here is where you put get_storage, hive, shared_pref initialization.
   /// or moor connection, or whatever that's async.
-  await Get.putAsync(() => ApiService().init());
-  await Get.putAsync(() => StoreService().init());
-  await Get.putAsync(() => CacheService().init());
-  await Get.putAsync(() => AuthService().init());
-  await Get.putAsync(() => SettingService().init());
 }
 
 class MyApp extends StatefulWidget {
@@ -59,6 +53,7 @@ class _MyAppState extends State<MyApp> {
         theme: AppThemes.lightTheme,
         darkTheme: AppThemes.darkTheme,
         themeMode: ThemeMode.system,
+        initialBinding: InitialBinding(),
         initialRoute: RouteConfig.splash,
         getPages: RouteConfig.getPages,
         localizationsDelegates: [

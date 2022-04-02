@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/app_dimens.dart';
 import 'package:flutter_app/generated/l10n.dart';
-import 'package:flutter_app/services/index.dart';
 import 'package:flutter_app/ui/widgets/appbar/app_bar_widget.dart';
 import 'package:get/get.dart';
+
+import '../../../services/setting_service.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);

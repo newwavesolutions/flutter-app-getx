@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/app_dimens.dart';
 import 'package:flutter_app/model/enums/load_status.dart';
-import 'package:flutter_app/services/auth_service.dart';
 import 'package:flutter_app/ui/pages/setting/setting_page.dart';
 import 'package:flutter_app/ui/widgets/buttons/app_white_button.dart';
 import 'package:flutter_app/ui/widgets/images/app_cache_image.dart';
@@ -20,8 +18,6 @@ class ProfileTabPage extends StatefulWidget {
 class _ProfileTabPageState extends State<ProfileTabPage> with AutomaticKeepAliveClientMixin {
   final ProfileTabLogic logic = Get.put(ProfileTabLogic());
   final ProfileTabState state = Get.find<ProfileTabLogic>().state;
-
-  final AuthService authLogic = Get.find<AuthService>();
 
   @override
   void dispose() {

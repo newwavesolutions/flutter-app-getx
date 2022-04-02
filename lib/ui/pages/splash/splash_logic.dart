@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/model/entities/index.dart';
-import 'package:flutter_app/services/api/api_service.dart';
-import 'package:flutter_app/services/index.dart';
+import 'package:flutter_app/repositories/auth_repository.dart';
 import 'package:flutter_app/ui/commons/app_dialog.dart';
 import 'package:flutter_app/ui/pages/main/main_view.dart';
 import 'package:flutter_app/ui/pages/sign_in/sign_in_view.dart';
@@ -12,24 +11,25 @@ import 'splash_state.dart';
 
 class SplashLogic extends GetxController {
   final state = SplashState();
-  final apiService = Get.find<ApiService>();
-  final authService = Get.find<AuthService>();
+  final _authRepository = Get.find<AuthRepository>();
 
   void checkLogin() async {
     await Future.delayed(Duration(seconds: 2));
-    if (authService.token.value == null) {
+    final isLoggedIn = await _authRepository.isLoggedIn();
+    if (!isLoggedIn) {
       Get.offAll(SignInPage());
     } else {
       try {
         //Profile
-        UserEntity? myProfile = await apiService.getProfile();
-        authService.updateUser(myProfile);
+        UserEntity? myProfile = await _authRepository.getProfile();
+        //Todo
+        // _authRepository.updateUser(myProfile);
       } catch (error, s) {
         logger.log(error, stackTrace: s);
         //Check 401
         if (error is DioError) {
           if (error.response?.statusCode == 401) {
-            authService.signOut();
+            _authRepository.signOut();
             checkLogin();
             return;
           }
