@@ -10,7 +10,7 @@ import 'sign_in_state.dart';
 
 class SignInLogic extends GetxController {
   final state = SignInState();
-  final _authRepository = Get.find<AuthRepository>();
+  final _authRepository = Get.find<AuthRepository>(tag: (AuthRepository).toString());
 
   void signIn() async {
     final username = state.usernameTextController.text;

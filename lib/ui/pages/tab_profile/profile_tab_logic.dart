@@ -8,7 +8,7 @@ import 'profile_tab_state.dart';
 class ProfileTabLogic extends GetxController {
   final state = ProfileTabState();
 
-  final _authRepository = Get.find<AuthRepository>();
+  final _authRepository = Get.find<AuthRepository>(tag: (AuthRepository).toString());
 
   void signOut() async {
     state.signOutStatus.value = LoadStatus.loading;

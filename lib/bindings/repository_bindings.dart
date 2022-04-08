@@ -11,12 +11,16 @@ class RepositoryBindings implements Bindings {
     final apiClient = ApiUtil.getApiClient();
     Get.lazyPut<AuthRepository>(
       () => AuthRepositoryImpl(apiClient: apiClient),
+      tag: (AuthRepository).toString(),
+      fenix: true,
     );
     Get.lazyPut<MovieRepository>(
       () => MovieRepositoryImpl(apiClient: apiClient),
+      fenix: true,
     );
     Get.lazyPut<NotificationRepository>(
       () => NotificationRepositoryImpl(apiClient: apiClient),
+      fenix: true,
     );
   }
 }

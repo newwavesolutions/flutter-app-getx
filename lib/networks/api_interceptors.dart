@@ -13,24 +13,24 @@ class ApiInterceptors extends InterceptorsWrapper {
     final method = options.method;
     final uri = options.uri;
     final data = options.data;
-    final authRepository = Get.find<AuthRepository>();
+    final authRepository = Get.find<AuthRepository>(tag: (AuthRepository).toString());
     final token = await authRepository.getToken();
     if (token != null) {
       options.headers['Authorization'] = 'Bearer ${token.accessToken}';
     }
-    logger.log(
+    apiLogger.log(
         "\n\n--------------------------------------------------------------------------------------------------------");
     if (method == 'GET') {
-      logger.log(
+      apiLogger.log(
           "✈️ REQUEST[$method] => PATH: $uri \n Token: ${options.headers}",
           printFullText: true);
     } else {
       try {
-        logger.log(
+        apiLogger.log(
             "✈️ REQUEST[$method] => PATH: $uri \n Token: ${token?.accessToken} \n DATA: ${jsonEncode(data)}",
             printFullText: true);
       } catch (e) {
-        logger.log(
+        apiLogger.log(
             "✈️ REQUEST[$method] => PATH: $uri \n Token: ${token?.accessToken} \n DATA: $data",
             printFullText: true);
       }
@@ -43,10 +43,10 @@ class ApiInterceptors extends InterceptorsWrapper {
     final statusCode = response.statusCode;
     final uri = response.requestOptions.uri;
     final data = jsonEncode(response.data);
-    logger.log("✅ RESPONSE[$statusCode] => PATH: $uri\n DATA: $data");
+    apiLogger.log("✅ RESPONSE[$statusCode] => PATH: $uri\n DATA: $data");
     //Handle section expired
     if (response.statusCode == 401) {
-      final authRepository = Get.find<AuthRepository>();
+      final authRepository = Get.find<AuthRepository>(tag: (AuthRepository).toString());
       authRepository.signOut();
       Get.off(SignInPage());
     }
@@ -61,7 +61,7 @@ class ApiInterceptors extends InterceptorsWrapper {
     try {
       data = jsonEncode(err.response?.data);
     } catch (e) {}
-    logger.log("⚠️ ERROR[$statusCode] => PATH: $uri\n DATA: $data");
+    apiLogger.log("⚠️ ERROR[$statusCode] => PATH: $uri\n DATA: $data");
     super.onError(err, handler);
   }
 }

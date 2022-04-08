@@ -1,8 +1,11 @@
 import 'dart:developer' as developer;
 
 import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
 
-var logger = MyLogger();
+var logger = Logger();
+// var logger = MyLogger();
+var apiLogger = MyLogger();
 
 class MyLogger {
   /// Log a message at level verbose.
@@ -42,7 +45,8 @@ class MyLogger {
     }
   }
 
-  void log(dynamic message, {bool printFullText = false, StackTrace? stackTrace}) {
+  void log(dynamic message,
+      {bool printFullText = false, StackTrace? stackTrace}) {
     if (printFullText) {
       _log(message);
     } else {

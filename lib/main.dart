@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'bindings/initial_binding.dart';
 import 'common/app_themes.dart';
 import 'router/route_config.dart';
+import 'services/app_service.dart';
 import 'services/setting_service.dart';
 import 'ui/pages/splash/splash_view.dart';
 
@@ -24,6 +25,8 @@ void main() async {
 Future initServices() async {
   /// Here is where you put get_storage, hive, shared_pref initialization.
   /// or moor connection, or whatever that's async.
+  await Get.putAsync(() => SettingService().init());
+  await Get.putAsync(() => AppService().init());
 }
 
 class MyApp extends StatefulWidget {

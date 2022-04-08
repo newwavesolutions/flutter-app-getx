@@ -11,7 +11,7 @@ import 'splash_state.dart';
 
 class SplashLogic extends GetxController {
   final state = SplashState();
-  final _authRepository = Get.find<AuthRepository>();
+  final _authRepository = Get.find<AuthRepository>(tag: (AuthRepository).toString());
 
   void checkLogin() async {
     await Future.delayed(Duration(seconds: 2));
@@ -25,7 +25,7 @@ class SplashLogic extends GetxController {
         //Todo
         // _authRepository.updateUser(myProfile);
       } catch (error, s) {
-        logger.log(error, stackTrace: s);
+        logger.e(error, s);
         //Check 401
         if (error is DioError) {
           if (error.response?.statusCode == 401) {
