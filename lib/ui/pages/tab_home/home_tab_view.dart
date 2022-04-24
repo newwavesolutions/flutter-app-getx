@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/services/auth_service.dart';
+import 'package:flutter_app/services/app_service.dart';
 import 'package:flutter_app/ui/pages/tab_home/enums/home_section.dart';
 import 'package:flutter_app/ui/pages/tab_home/movies_section/movies_section_view.dart';
 import 'package:flutter_app/ui/pages/tab_home/widgets/home_app_bar.dart';
@@ -13,10 +13,11 @@ class HomeTabPage extends StatefulWidget {
   _HomeTabPageState createState() => _HomeTabPageState();
 }
 
-class _HomeTabPageState extends State<HomeTabPage> with AutomaticKeepAliveClientMixin {
+class _HomeTabPageState extends State<HomeTabPage>
+    with AutomaticKeepAliveClientMixin {
   final HomeTabLogic logic = Get.put(HomeTabLogic());
+  final AppService _appService = Get.put(AppService());
   final HomeTabState state = Get.find<HomeTabLogic>().state;
-  final authService = Get.find<AuthService>();
 
   @override
   bool get wantKeepAlive => true;
@@ -38,7 +39,7 @@ class _HomeTabPageState extends State<HomeTabPage> with AutomaticKeepAliveClient
     return Obx(() {
       return Scaffold(
         appBar: HomeAppBar(
-          avatarUrl: authService.user.value?.avatarUrl ?? "",
+          avatarUrl: _appService.user.value?.avatarUrl ?? "",
         ),
         body: SafeArea(
           child: RefreshIndicator(
