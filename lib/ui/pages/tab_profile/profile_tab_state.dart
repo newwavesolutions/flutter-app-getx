@@ -7,6 +7,5 @@ class ProfileTabState {
 
   final signOutStatus = LoadStatus.initial.obs;
 
-  ProfileTabState() {
-  }
+  ProfileTabState() {}
 }

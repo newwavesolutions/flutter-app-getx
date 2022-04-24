@@ -1,7 +1,5 @@
 import '../configs/app_configs.dart';
 import '../model/entities/movie_entity.dart';
-import '../model/entities/token_entity.dart';
-import '../model/entities/user/user_entity.dart';
 import '../model/response/array_response.dart';
 import '../networks/api_client.dart';
 

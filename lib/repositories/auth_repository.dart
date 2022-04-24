@@ -14,10 +14,6 @@ abstract class AuthRepository {
 
   void removeToken();
 
-  // void updateUser(UserEntity user);
-  //
-  // void deleteUser();
-
   Future<bool> isLoggedIn();
 
   void signOut();

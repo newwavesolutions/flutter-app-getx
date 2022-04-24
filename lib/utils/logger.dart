@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
-// var logger = MyLogger();
 var apiLogger = MyLogger();
 
 class MyLogger {

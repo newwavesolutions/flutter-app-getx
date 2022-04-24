@@ -45,14 +45,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   Widget tem1() {
     return Obx(() {
-      print("SonLT 1");
       return Text("${state.temp1.value}");
     });
   }
 
   Widget tem2() {
     return Obx(() {
-      print("SonLT 2");
       return Text("${state.temp2.value}");
     });
   }
